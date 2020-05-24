@@ -55,13 +55,7 @@ GEM
     backport (1.1.2)
     bcrypt (3.1.13)
     benchmark (0.1.0)
-    better_errors (2.7.1)
-      coderay (>= 1.0.0)
-      erubi (>= 1.0.0)
-      rack (>= 0.9.0)
     bindex (0.8.1)
-    binding_of_caller (0.8.0)
-      debug_inspector (>= 0.0.1)
     bootstrap (4.4.1)
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 1.14.3, < 2)
@@ -80,12 +74,10 @@ GEM
       regexp_parser (~> 1.5)
       xpath (~> 3.2)
     childprocess (3.0.0)
-    coderay (1.1.2)
     concurrent-ruby (1.1.6)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     crass (1.0.6)
-    debug_inspector (0.0.3)
     devise (4.7.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -152,7 +144,7 @@ GEM
       ast (~> 2.4.0)
     popper_js (1.16.0)
     public_suffix (4.0.5)
-    puma (3.12.4)
+    puma (3.12.6)
     rack (2.2.2)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -305,8 +297,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  better_errors
-  binding_of_caller
   bootstrap (~> 4.4.1)
   bullet
   byebug
@@ -322,7 +312,7 @@ DEPENDENCIES
   letter_opener_web
   listen (>= 3.0.5, < 3.2)
   mysql2 (>= 0.3.18, < 0.6.0)
-  puma (~> 3.7)
+  puma (~> 3.12)
   rails (~> 5.1.7)
   rspec-rails
   rubocop
