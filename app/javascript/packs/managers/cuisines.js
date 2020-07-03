@@ -6,21 +6,29 @@ $(document).ready(function () {
 $(function () {
   var el, sortable;
   el = document.getElementById("sortable-procedure");
-  if (el !== null) {
-    return sortable = Sortable.create(el, {
-      delay: 200,
-      onUpdate: function (evt) {
-        return $.ajax({
-          url: 'managers/procedures/' + $("#parent_id").val() + '/sort',
-          type: 'patch',
-          data: {
-            from: evt.oldIndex,
-            to: evt.newIndex
-          }
-        });
-      }
-    });
-  }
+  // ブラウザ上で
+  // jQuery.Deferred exception: Sortable is not defined ReferenceError: Sortable is not defined jquery.js:3432
+  // Uncaught ReferenceError: Sortable is not defined cusisines.js:12
+  console.log(Sortable.create(el))
+  // el = document.getElementById("sortable-procedure");
+  // if (el !== null) {
+  //   return sortable = Sortable.create(el, {
+  //     delay: 200,
+  //     onUpdate: function (evt) {
+  //       return $.ajax({
+  //         url: 'managers/procedures/' + $("#parent_id").val() + '/sort',
+  //         type: 'patch',
+  //         data: {
+  //           from: evt.oldIndex,
+  //           to: evt.newIndex
+  //         }
+  //       });
+  //     }
+  //   });
+  // }
+  // if (el !== null) {
+  //   return sortable = Sortable.create(el, {delay: 200});
+  // }
 });
 
 // $(function () {
