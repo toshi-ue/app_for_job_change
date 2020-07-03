@@ -3,12 +3,13 @@
 
 import 'jquery/dist/jquery'
 import 'rails-ujs/lib/assets/compiled/rails-ujs'
-import 'jquery-ui/ui/widget'
+import 'jquery-ui/ui/core'
+import 'jquery-ui/ui/widgets/sortable'
 import 'popper.js/dist/umd/popper.min'
 import 'bootstrap/dist/js/bootstrap'
 import 'clipboard/dist/clipboard.min'
 import '@fortawesome/fontawesome-free/js/all'
-import 'jquery-ui/ui/widgets/sortable'
+
 
 window.$ = window.jQuery = require('jquery');
 
@@ -31,4 +32,4 @@ window.$ = window.jQuery = require('jquery');
 
 console.log('Hello World from Webpacker')
 
-// import '../stylesheets/application'
+// import 'packs/managers/cuisines'
