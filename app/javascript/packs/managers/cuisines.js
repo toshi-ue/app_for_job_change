@@ -1,20 +1,49 @@
 $(document).ready(function () {
   let action_name = $('body').data('action')
   console.log(action_name)
-  // console.log(window)
-  // console.log(window[controller])
-  // table-sortable-procedure
-  // if(action_name === "show"){
-  //   console.log("show_passed")
-  //   $('.table-sortable-procedure').sortable({
-
-  //   })
-  $('.table-sortable-procedure').sortable({
-    axis: 'y',
-    items: 'item'
-  })
-
 });
+
+$(function () {
+  var el, sortable;
+  el = document.getElementById("sortable-procedure");
+  if (el !== null) {
+    return sortable = Sortable.create(el, {
+      delay: 200,
+      onUpdate: function (evt) {
+        return $.ajax({
+          url: 'managers/procedures/' + $("#parent_id").val() + '/sort',
+          type: 'patch',
+          data: {
+            from: evt.oldIndex,
+            to: evt.newIndex
+          }
+        });
+      }
+    });
+  }
+});
+
+// $(function () {
+//   // UIをならべかえる要素(ここから)
+//   var el, sortable;
+//   el = $(".table-sortable-procedure");
+//   if (el !== null) {
+//     return sortable = Sortable.create(el, {
+//       delay: 200,
+//   // UIをならべかえる要素(ここまで)
+//       return $.ajax({
+//         type: 'PUT',
+//         url: '/',
+//         dataType: 'json'
+//         data:
+//       })
+
+//     });
+//   }
+// });
+
+
+
 // $(function () {
 //   return $('.table-sortable').sortable({
 //     axis: 'y',

@@ -3,12 +3,14 @@
 
 import 'jquery/dist/jquery'
 import 'rails-ujs/lib/assets/compiled/rails-ujs'
-import 'jquery-ui/ui/core'
-import 'jquery-ui/ui/widgets/sortable'
+// import 'jquery-ui/ui/core'
+// import 'jquery-ui/ui/widgets/sortable'
 import 'popper.js/dist/umd/popper.min'
 import 'bootstrap/dist/js/bootstrap'
 import 'clipboard/dist/clipboard.min'
 import '@fortawesome/fontawesome-free/js/all'
+// import 'sortablejs/modular/sortable.complete.esm'
+import './Sortable.min'
 
 
 window.$ = window.jQuery = require('jquery');
