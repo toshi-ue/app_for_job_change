@@ -64,7 +64,7 @@
 
 <% if @procedures.present? %>
 <div class="my-2 border border-secondary">
-  <table class="table table-hover table-sm table-responsive table-sortable-procedure">
+  <table id="table-sortable-procedure" class="table table-hover table-sm table-responsive">
     <thead>
       <tr>
         <th>ID</th>
@@ -76,7 +76,7 @@
         <th></th>
       </tr>
     </thead>
-    <tbody>
+    <tbody id="sortable-procedure">
       <%= render partial: 'managers/cuisines/procedure', collection: @procedures, as: "procedure" %>
     </tbody>
   </table>

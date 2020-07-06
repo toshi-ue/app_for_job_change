@@ -28,7 +28,11 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :procedures
+    resources :procedures do
+      member do
+        put :sort
+      end
+    end
 
     resources :rawmaterials do
       member do

@@ -1,85 +1,50 @@
+// import Sortable from 'sortablejs';
+import 'jquery-ui/ui/widgets/sortable';
+
 $(document).ready(function () {
   let action_name = $('body').data('action')
   console.log(action_name)
 });
 
 $(function () {
-  var el, sortable;
-  el = document.getElementById("sortable-procedure");
-  // ブラウザ上で
-  // jQuery.Deferred exception: Sortable is not defined ReferenceError: Sortable is not defined jquery.js:3432
-  // Uncaught ReferenceError: Sortable is not defined cusisines.js:12
-  console.log(Sortable.create(el))
-  // el = document.getElementById("sortable-procedure");
-  // if (el !== null) {
-  //   return sortable = Sortable.create(el, {
-  //     delay: 200,
-  //     onUpdate: function (evt) {
-  //       return $.ajax({
-  //         url: 'managers/procedures/' + $("#parent_id").val() + '/sort',
-  //         type: 'patch',
-  //         data: {
-  //           from: evt.oldIndex,
-  //           to: evt.newIndex
-  //         }
-  //       });
-  //     }
-  //   });
-  // }
-  // if (el !== null) {
-  //   return sortable = Sortable.create(el, {delay: 200});
-  // }
+  // const csrfToken = document.querySelector('[name="csrf-token"]').getAttribute('content');
+  console.log(csrfToken)
+  return $('#sortable-procedure').sortable({
+    axis: 'y',
+    items: '.procedure',
+    update: function (e, ui) {
+      // console.log(ui)
+      var item, item_data, params;
+      item = ui.item;
+      item_data = item.data();
+      // console.log(item)
+      // console.log(item_data)
+      // console.log(item_data.updateUrl)
+
+      // data属性のデータを取得する
+      params = {
+        _method: 'put'
+      };
+
+      // parameterを作成
+      params[item_data.modelName] = {
+        row_order_position: item.index()
+      };
+
+      console.log(params)
+
+      // ranked_model用
+      // 並べ替えをDBに反映(ajaxでPOST)
+      return $.ajax({
+        type: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': csrfToken
+        },
+        url: item_data.updateUrl,
+        dataType: 'json',
+        data: params
+      });
+    }
+  });
 });
-
-// $(function () {
-//   // UIをならべかえる要素(ここから)
-//   var el, sortable;
-//   el = $(".table-sortable-procedure");
-//   if (el !== null) {
-//     return sortable = Sortable.create(el, {
-//       delay: 200,
-//   // UIをならべかえる要素(ここまで)
-//       return $.ajax({
-//         type: 'PUT',
-//         url: '/',
-//         dataType: 'json'
-//         data:
-//       })
-
-//     });
-//   }
-// });
-
-
-
-// $(function () {
-//   return $('.table-sortable').sortable({
-//     axis: 'y',
-//     items: '.item',
-//     update: function (e, ui) {
-//       var item, item_data, params;
-//       item = ui.item;
-//       item_data = item.data();
-
-//       data属性のデータを取得する
-//       params = {
-//         _method: 'put'
-//       };
-
-//       parameterを作成
-//       params[item_data.modelName] = {
-//         row_order_position: item.index()
-//       };
-
-
-//       ranked_model用
-//       並べ替えをDBに反映(ajaxでPOST)
-//       return $.ajax({
-//         type: 'POST',
-//         url: item_data.updateUrl,
-//         dataType: 'json',
-//         data: params
-//       });
-//     }
-//   });
-// });

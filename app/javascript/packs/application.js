@@ -10,7 +10,7 @@ import 'popper.js/dist/umd/popper.min'
 import 'bootstrap/dist/js/bootstrap'
 import 'clipboard/dist/clipboard.min'
 import '@fortawesome/fontawesome-free/js/all'
-import Sortable from 'sortablejs/modular/sortable.complete.esm.js'
+// import Sortable from 'sortablejs/modular/sortable.complete.esm.js'
 
 
 window.$ = window.jQuery = require('jquery');
