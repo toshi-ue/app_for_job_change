@@ -7,9 +7,9 @@ $(document).ready(function () {
 });
 
 $(function () {
-  // const csrfToken = document.querySelector('[name="csrf-token"]').getAttribute('content');
-  console.log(csrfToken)
-  return $('#sortable-procedure').sortable({
+  const csrfToken = document.querySelector('[name="csrf-token"]').getAttribute('content');
+  // console.log(csrfToken)
+  return $('#table-sortable-procedure').sortable({
     axis: 'y',
     items: '.procedure',
     update: function (e, ui) {
@@ -27,21 +27,21 @@ $(function () {
       };
 
       // parameterを作成
-      params[item_data.modelName] = {
+      params[item_data.model_name] = {
         row_order_position: item.index()
       };
 
-      console.log(params)
+      console.log(item_data)
 
       // ranked_model用
       // 並べ替えをDBに反映(ajaxでPOST)
       return $.ajax({
-        type: 'POST',
+        type: 'PUT',
         headers: {
           'Content-Type': 'application/json',
           'X-CSRF-Token': csrfToken
         },
-        url: item_data.updateUrl,
+        url: item_data.update_url,
         dataType: 'json',
         data: params
       });
