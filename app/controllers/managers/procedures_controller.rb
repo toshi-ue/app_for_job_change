@@ -1,6 +1,7 @@
 class Managers::ProceduresController < ApplicationController
   before_action :authenticate_manager!
   before_action :set_procedure, only: [:edit, :update, :destroy]
+  # protect_from_forgery except: :sort
 
   # TODO: もう少しDRYに書けないか?
   def index
@@ -31,6 +32,12 @@ class Managers::ProceduresController < ApplicationController
     @procedure.destroy
     @procedures = Procedure.where(cuisine_id: @procedure.cuisine_id).rank(:row_order)
     @procedure = Procedure.new(cuisine_id: params[:id])
+  end
+
+  def sort
+    @procedure = Procedure.find(params[:id])
+    @procedure.update(procedure_params)
+    head :ok
   end
 
   private
