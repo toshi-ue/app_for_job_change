@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
     resources :foodstuffs, except: [:show] do
       member do
-        get 'restore'
+        put :sort
       end
     end
 

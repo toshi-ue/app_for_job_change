@@ -1,7 +1,6 @@
 class Managers::ProceduresController < ApplicationController
   before_action :authenticate_manager!
   before_action :set_procedure, only: [:edit, :update, :destroy]
-  # protect_from_forgery except: :sort
 
   # TODO: もう少しDRYに書けないか?
   def index
