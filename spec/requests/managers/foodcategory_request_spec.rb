@@ -1,15 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe "Foodcategories", type: :request do
-  # before do
-  #   # foodcategoryのインスタンスを登録
-  #   @foodcategory1 = create(:foodcategory)
-  #   # 管理者を作成し、ログイン
-  #   manager = FactoryBot.create(:manager)
-  #   sign_in manager
-  #   get authenticated_root_path
-  #   # get root_path
-  # end
+  before do
+    # foodcategoryのインスタンスを登録
+    @foodcategory1 = create(:foodcategory, name: "aaa")
+    # 管理者を作成し、ログイン
+    manager = FactoryBot.create(:manager)
+    sign_in(manager)
+  end
 
   describe "GET #index" do
     it "リクエストが成功すること" do
