@@ -3,33 +3,30 @@ require "fileutils"
 require 'date'
 
 t = Time.now + 9.hours
-t_folder_name = t.strftime("%y_%m_%d")
+t_folder_name = t.strftime("%y%m%d")
 seed_gen_folder = "#{Rails.root}/db/afixtures"
 
 models_image_exists = ["cuisine"]
 
-
-# add or clean directory
-if Dir.exist?(seed_gen_folder)
-  if Dir.exist?("#{seed_gen_folder}/#{t_folder_name}")
-    Dir.chdir("#{seed_gen_folder}/#{t_folder_name}")
-    FileUtils.rm(Dir.glob('*.rb'))
-    models_image_exists.each do |ms|
-      Dir.chdir("#{seed_gen_folder}/#{t_folder_name}/uploads/#{ms}/")
-      FileUtils.rm(Dir.glob('*.*'))
-    end
-    Dir.chdir("#{Rails.root}")
-  else
-    FileUtils.mkdir_p("#{seed_gen_folder}/#{t_folder_name}/uploads/cuisine")
-  end
-end
-
-# Dir.chdir "#{Rails.root}"
-# binding.pry
-
 namespace :seed_fu_gen do
   desc 'generate seed-fu files'
   task all: :environment do |t|
+
+    # add or clean directory
+    if Dir.exist?(seed_gen_folder)
+      if Dir.exist?("#{seed_gen_folder}/#{t_folder_name}")
+        Dir.chdir("#{seed_gen_folder}/#{t_folder_name}")
+        FileUtils.rm(Dir.glob('*.rb'))
+        models_image_exists.each do |ms|
+          Dir.chdir("#{seed_gen_folder}/#{t_folder_name}/uploads/#{ms}/")
+          FileUtils.rm(Dir.glob('*.*'))
+        end
+        Dir.chdir("#{Rails.root}")
+      else
+        FileUtils.mkdir_p("#{seed_gen_folder}/#{t_folder_name}/uploads/cuisine")
+      end
+    end
+
     # 01_manager.rb
     managers = Manager.all
     SeedFu::Writer.write("db/afixtures/#{t_folder_name}/01_manager.rb", class_name: 'Manager', seed_type: :seed_once) do |writer|
@@ -119,5 +116,47 @@ namespace :seed_fu_gen do
         writer << st.attributes.except("created_at", "updated_at")
       end
     end
+  end
+end
+
+namespace :seed_fu_all_datas do
+  desc 'seed files and images'
+  task all: :environment do |t|
+    # find latest foloder name
+    folder_names = []
+    Dir.glob("#{Rails.root}/db/afixtures/*") do |f|
+      folder_names << f.slice(/[0-9]+$/).to_i
+    end
+    latest_folder_name = folder_names.max.to_s
+
+    # copy image files
+    models_image_exists.each do |ms|
+      target_folder = "#{Rails.root}/public/uploads/#{ms}"
+      if Dir.exist?(target_folder)
+        # target_folderへ移動
+        Dir.chdir(target_folder)
+        # target_folder以下の画像を全部削除
+        FileUtils.rm(Dir.glob('*.jpg'))
+      else
+        FileUtils.mkdir_p(target_folder)
+      end
+      # target_folderへ移動
+      Dir.chdir("#{seed_gen_folder}/#{latest_folder_name}/uploads/#{ms}/")
+      # target_folder内へ db/afixtures/#{latest_folder_name}/uploads/#{ms} フォルダの画像をコピーする
+      Dir.glob('*') do |item|
+        puts item
+        FileUtils.cp(item, "#{target_folder}")
+      end
+    end
+
+    # re_make seed folder and files
+    should_re_change_folder = "#{Rails.root}/db/fixtures"
+    FileUtils.rm_rf(should_re_change_folder)
+    # FileUtils.mkdir_p(should_re_change_folder)
+
+    FileUtils.cp_r("#{Rails.root}/db/afixtures/#{latest_folder_name}", should_re_change_folder)
+    FileUtils.cp_r("#{Rails.root}/db/afixtures/#{latest_folder_name}/uploads", "#{Rails.root}/public/uploads")
+    # "#{Rails.root}/db/afixtures/*"
+
   end
 end
