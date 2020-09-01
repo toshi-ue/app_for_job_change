@@ -2,7 +2,7 @@ class Foodstuff < ApplicationRecord
   before_save :convert_specific_format
   belongs_to :cuisine
   belongs_to :rawmaterial
-
+  validates :cuisine_id, uniqueness: { scope: :rawmaterial_id, message: "1つの料理に同じ材料を登録できません" }
   # FIXME: validationはかかる
   #         ただしvalidationメッセージは"数量を入力してください"と表示される
   validates :quantity, presence: true, format: { with: %r{\A[1-9１-９]*[/／]*[0-9０-９]*\z}, message: "は分数もしくは数字(整数)で入力してください" }
