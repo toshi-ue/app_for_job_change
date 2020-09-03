@@ -45,9 +45,15 @@ RSpec.describe Foodstuff, type: :model do
 
   # TODO: 別ブランチでテスト
   describe "cuisine_idカラムのバリデーション" do
-    # context "NG" do
-    #   it "同一のcuisine_id, rawmaterial_idであれば無効であること"
-    # end
+    context "NG" do
+      it "同一のcuisine_id, rawmaterial_idであれば無効であること" do
+        foodstuff1 = create(:foodstuff)
+        foodstuff2 = build(:foodstuff, cuisine_id: foodstuff1.id, rawmaterial_id: foodstuff1.rawmaterial_id)
+        foodstuff2.valid?
+        expect(foodstuff2).to be_valid
+      end
+
+    end
   end
 
   describe "rawmaterial_idカラムのバリデーション" do
