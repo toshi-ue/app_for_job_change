@@ -15,6 +15,7 @@ class Managers::FoodstuffsController < ApplicationController
 
   def create
     @foodstuff = Foodstuff.new(foodstuff_params)
+    # Modelスペックのテストでbefore_saveを実行しない
     if @foodstuff.save
       redirect_to managers_cuisine_path(@foodstuff.cuisine_id), flash: { notice: "#{@foodstuff.rawmaterial.name} が追加されました" }
     else
