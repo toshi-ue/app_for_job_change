@@ -1,5 +1,6 @@
 class Foodstuff < ApplicationRecord
-  before_save :convert_specific_format
+  before_validation :convert_specific_format
+  # before_save :convert_specific_format
   belongs_to :cuisine
   belongs_to :rawmaterial
 
@@ -35,6 +36,7 @@ class Foodstuff < ApplicationRecord
 
   def convert_specific_format
     # 空白を削除, 全角があれば半角に
-    self.quantity = quantity.gsub(/ 　/, "").tr("／", "/").strip.tr('０-９', '0-9')
+    # self.quantity = quantity.gsub(/\ \　/, "").tr("／", "/").strip.tr('０-９', '0-9')
+    self.quantity = quantity.gsub(/ |　/, "").tr("／", "/").strip.tr('０-９', '0-9')
   end
 end
