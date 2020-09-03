@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :cuisine do
     sequence(:name) {|n| "料理名#{n}" }
-    sequence(:difficulty) {|n| n }
+    difficulty { Cuisine.difficulties.keys.sample }
     # sequence(:calories) {|n| n }
     sequence(:cooking_time) {|n| n }
     sequence(:description) {|n| "料理名#{n}の説明" }
