@@ -51,6 +51,18 @@ RSpec.describe "Managers::Foodstuffs", type: :request do
         }
       end.to change(Foodstuff, :count).by(1)
     end
+
+    it "cuisine/showページへリダイレクトすること" do
+      post managers_foodstuffs_path, params: {
+        foodstuff: {
+          cuisine_id: @cuisine.id,
+          rawmaterial_id: @rawmaterial.id,
+          quantity: 1
+        }
+      }
+      follow_redirect!
+      expect(response.body).to include "#{@cuisine.name}"
+    end
   end
 
   describe "GET #edit" do
@@ -106,13 +118,13 @@ RSpec.describe "Managers::Foodstuffs", type: :request do
       delete managers_foodstuff_path @foodstuff
       expect(response.status).to eq 302
     end
+
     it "既存レコードが削除されること" do
       expect do
         delete managers_foodstuff_path @foodstuff
       end.to change(Foodstuff, :count).by(-1)
-      # expect{ delete managers_foodstuff_path @foodstuff }.to change{ Foodstuff.count }.by(-1)
-
     end
+
     it "cuisine/showページヘリダイレクトすること" do
       delete managers_foodstuff_path @foodstuff
       expect(response).to redirect_to(managers_cuisine_path( @foodstuff.cuisine_id))

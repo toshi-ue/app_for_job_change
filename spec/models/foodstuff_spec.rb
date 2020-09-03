@@ -4,9 +4,9 @@ RSpec.describe Foodstuff, type: :model do
   describe "quantityカラムのバリデーション" do
     context "OK" do
       it "数字のみ(半角)であること" do
-      foodstuff = build(:foodstuff, :only_half_size_number)
-      foodstuff.valid?
-      expect(foodstuff).to be_valid
+        foodstuff = build(:foodstuff, :only_half_size_number)
+        foodstuff.valid?
+        expect(foodstuff).to be_valid
       end
 
       it "数字のみ(全角)であること" do
