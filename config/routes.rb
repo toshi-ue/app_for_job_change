@@ -55,8 +55,11 @@ Rails.application.routes.draw do
       end
     end
   end
-  resources :cuisines, only: [:show]
-  # resources :favorites, only: [:index, :create, :destroy]
+  resources :cuisines, only: [:show] do
+    # ここにindexアクションを含めて良いのか?
+    resources :favorites, only: [:create, :destroy]
+  end
+  get 'favorites/index'
 
   # letter_opener_web
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
