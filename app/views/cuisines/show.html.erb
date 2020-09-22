@@ -38,21 +38,7 @@
           </div>
           <div class="row">
             <div id="btn-favorite" class="col-12 col-sm-4 mt-2 text-center">
-            <% if current_user.already_favorite?(@cuisine) %>
-              <%= link_to cuisine_favorite_path(@cuisine.id), method: :delete do %>
-                <button class="btn btn-warning btn-block" type="button">
-                  <i class="far fa-bookmark"></i><br>
-                  Favorite
-                </button>
-              <% end %>
-            <% else %>
-              <%= link_to cuisine_favorites_path(@cuisine.id), method: :post do %>
-                <button class="btn btn-outline-primary btn-block" type="button">
-                  <i class="far fa-bookmark"></i><br>
-                  Favorite
-                </button>
-              <% end %>
-            <% end %>
+            <%= render partial: 'favorites/favorite', locals: {cuisine: @cuisine} %>
             </div>
             <div class="col-12 col-sm-4 mt-2 text-center">
               <button class="btn btn-outline-primary btn-block" type="button">
