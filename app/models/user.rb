@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :timeoutable, :trackable
 
   has_many :favorites, dependent: :destroy
+  # Ajaxで使用している自作メソッド
   def already_favorite?(cuisine)
     self.favorites.exists?(cuisine_id: cuisine.id)
   end
