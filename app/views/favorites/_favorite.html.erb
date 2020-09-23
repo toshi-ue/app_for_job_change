@@ -1,9 +1,10 @@
 <% if user_signed_in? %>
-  <% binding.pry %>
-  <% if current_user.already_favorite?(cuisine) %>
+  <% if Favorite.find_by(user_id: current_user.id, cuisine_id: cuisine.id) %>
+  <%# if current_user.already_favorite?(cuisine) %>
     <%= link_to cuisine_favorite_path(cuisine.id), method: :delete, remote: true do %>
       <button class="btn btn-warning btn-block" type="button">
         <i class="far fa-bookmark"></i><br>
+        wish false
         Favorite
       </button>
     <% end %>
@@ -11,6 +12,7 @@
     <%= link_to cuisine_favorites_path(cuisine.id), method: :post, remote: true do %>
       <button class="btn btn-outline-primary btn-block" type="button">
         <i class="far fa-bookmark"></i><br>
+        wish true
         Favorite
       </button>
     <% end %>
@@ -22,6 +24,7 @@
   <%= link_to cuisine_favorites_path(cuisine.id), method: :post, remote: true do %>
     <button class="btn btn-outline-primary btn-block" type="button">
       <i class="far fa-bookmark"></i><br>
+      not login
       Favorite
     </button>
   <% end %>

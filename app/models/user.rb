@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :timeoutable, :trackable
 
-  has_many :favorites, dependent: :destroy
+  has_many :favorites, dependent: :destroy, inverse_of: :user
   # Ajaxで使用している自作メソッド
   def already_favorite?(cuisine)
     self.favorites.exists?(cuisine_id: cuisine.id)
