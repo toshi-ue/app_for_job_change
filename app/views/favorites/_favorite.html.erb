@@ -4,15 +4,16 @@
     <%= link_to cuisine_favorite_path(cuisine.id), method: :delete, remote: true do %>
       <button class="btn btn-warning btn-block" type="button">
         <i class="far fa-bookmark"></i><br>
-        wish false
+        wish true
         Favorite
       </button>
     <% end %>
   <% else %>
-    <%= link_to cuisine_favorites_path(cuisine.id), method: :post, remote: true do %>
+    <%= link_to cuisine_favorite_path(cuisine.id), method: :post, remote: true do %>
       <button class="btn btn-outline-primary btn-block" type="button">
         <i class="far fa-bookmark"></i><br>
-        wish true
+
+        wish false
         Favorite
       </button>
     <% end %>
@@ -21,7 +22,7 @@
   <%# FIXME: ログインページへリダイレクトしない(before_actionが実行されていない?)
               Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms)
   %>
-  <%= link_to cuisine_favorites_path(cuisine.id), method: :post, remote: true do %>
+  <%= link_to cuisine_favorite_path(cuisine.id), method: :post, remote: true do %>
     <button class="btn btn-outline-primary btn-block" type="button">
       <i class="far fa-bookmark"></i><br>
       not login

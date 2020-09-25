@@ -43,10 +43,11 @@ RSpec.describe "Favorites", type: :request do
       # テストがパスしない
       it '登録できること' do
         cuisine = create(:cuisine)
+        favorite = build(:favorite)
         expect{
-          post cuisine_favorites_path,
+          post cuisine_favorites_path(cuisine.id, cuisine.id),
                 params: { favorite: attributes_for(:favorite, user_id: @user.id, cuisine_id: cuisine.id)}
-        }.to change{favorite.count}.by(1)
+        }.to change{Favorite.count}.by(1)
       end
       # TODO: ajaxで実装したいため保留中
       it 'cuisine/showページへリダイレクトすること'
@@ -78,8 +79,9 @@ RSpec.describe "Favorites", type: :request do
       #    ログインしていない場合の処理はどのように書けば良いのか
       it 'ログインページへリダイレクトすること' do
         cuisine = create(:cuisine)
+        favorite = create(:favorite)
         sign_out @user
-        delete cuisine_favorite_path(cuisine.id)
+        delete cuisine_favorite_path(cuisine.id, cuisine.id)
         expect(response.status).to eq 302
         expect(response).to redirect_to(new_user_session_path)
         follow_redirect!

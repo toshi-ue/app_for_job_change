@@ -57,7 +57,9 @@ Rails.application.routes.draw do
   end
   resources :cuisines, only: [:show] do
     # ここにindexアクションを含めて良いのか?
-    resources :favorites, only: [:create, :destroy]
+    # resources :favorites, only: [:create, :destroy]
+    post :favorite
+    delete :favorite
   end
   get 'favorites/index'
 
