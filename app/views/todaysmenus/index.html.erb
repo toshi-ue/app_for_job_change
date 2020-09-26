@@ -1,0 +1,34 @@
+<%# TODO: 後でデザインを修正する %>
+<h1>Todaysmenus#index</h1>
+<p>Find me in app/views/todaysmenus/index.html.erb</p>
+<% unless @todaysmenus.blank? %>
+  <% @todaysmenus.each do |tm| %>
+    <table>
+      <tr>
+        <td><%= tm.id %></td>
+        <td><%= tm.cuisine_id %></td>
+        <td><%= tm.user_id %></td>
+        <td><%= tm.serving_count %></td>
+        <td><%= link_to 'destroy', todaysmenu_path(tm.cuisine_id), method: :delete %></td>
+      </tr>
+    </table>
+    <p>
+      @todaysmenus.id: <%= tm.id %>
+    </p>
+    <p>
+      @todaysmenus.cuisine_id:<%= tm.cuisine_id %>
+    </p>
+    <p>
+      @todaysmenus.user_id:<%= tm.user_id %>
+    </p>
+    <p>
+      @todaysmenus.serving_count:<%= tm.serving_count %>
+    </p>
+
+  <% end %>
+<% else %>
+  <p>
+    <h3>@todaysmenus is blank.</h3>
+  </p>
+
+<% end %>
