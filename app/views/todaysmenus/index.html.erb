@@ -3,6 +3,11 @@
   <div class="content_wrapper">
     <div class="row">
       <div class="col-sm-10 col-md-8 col-lg-6 col-xl-4 offset-sm-1 offset-md-2 offset-lg-3 offset-lg-4">
+        <%= render "shared/flash_messages" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-10 col-md-8 col-lg-6 col-xl-4 offset-sm-1 offset-md-2 offset-lg-3 offset-lg-4">
         <div>
           <table class="table table-hover">
             <thead>
@@ -17,13 +22,29 @@
                 <tr>
                   <td class="text-break align-middle"><%= tm.cuisine.name %></td>
                   <td class="align-middle text-center">
-                    <select>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                    </select>
+                      <%= form_with model: tm, url: todaysmenu_path(tm.id), method: :put do |f| %>
+
+
+                        <% if tm.serving_count >= 3 %>
+                          <%# tm.serving_count +- 2 の幅で表示する %>
+                          <% ary = []%>
+                          <% 5.times { |n| ary << (tm.serving_count- 2) + n} %>
+                          <%= f.select :serving_count,
+                                ary,
+                                {selected: tm.serving_count},
+                                { id: "", class: "put-id-#{tm.id}"}
+                          %>
+                        <% else %>
+                        <%# 1から順に表示する %>
+                          <% ary = []%>
+                          <% 5.times { |n| ary << n + 1} %>
+                          <%= f.select :serving_count,
+                                ary,
+                                {selected: tm.serving_count},
+                                { id: "", class: "put-id-#{tm.id}"}
+                          %>
+                        <% end %>
+                      <% end %>
                   </td>
                   <td>
                     <div class="text-center">
@@ -44,13 +65,18 @@
   </div>
 <% else %>
   <div class="content_wrapper">
+    <div class="row">
+      <div class="col-sm-10 col-md-8 col-lg-6 col-xl-4 offset-sm-1 offset-md-2 offset-lg-3 offset-lg-4">
+        <%= render "shared/flash_messages" %>
+      </div>
+    </div>
     <div id="no-todaysmenus" class="d-flex justify-content-center align-items-center">
       <div>
         <div>
           <div class="page-title text-center">今日の献立(Today)</div>
           <p class="text-muted text-center no-todaysmenus-description">本日の献立はまだありません<br>追加しましょう!!</p>
           <p class="text-center">
-            <%= link_to favorites_index_path do %>
+            <%= link_to favorites_path do %>
               <button class="btn btn-warning">Favoriteへ</button>
             <% end %>
           </p>
