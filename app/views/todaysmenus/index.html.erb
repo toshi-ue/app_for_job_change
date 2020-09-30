@@ -22,29 +22,13 @@
                 <tr>
                   <td class="text-break align-middle"><%= tm.cuisine.name %></td>
                   <td class="align-middle text-center">
-                      <%= form_with model: tm, url: todaysmenu_path(tm.id), method: :put do |f| %>
-
-
-                        <% if tm.serving_count >= 3 %>
-                          <%# tm.serving_count +- 2 の幅で表示する %>
-                          <% ary = []%>
-                          <% 5.times { |n| ary << (tm.serving_count- 2) + n} %>
-                          <%= f.select :serving_count,
-                                ary,
-                                {selected: tm.serving_count},
-                                { id: "", class: "put-id-#{tm.id}"}
-                          %>
-                        <% else %>
-                        <%# 1から順に表示する %>
-                          <% ary = []%>
-                          <% 5.times { |n| ary << n + 1} %>
-                          <%= f.select :serving_count,
-                                ary,
-                                {selected: tm.serving_count},
-                                { id: "", class: "put-id-#{tm.id}"}
-                          %>
-                        <% end %>
-                      <% end %>
+                    <%= form_with model: tm, url: todaysmenu_path(tm.id), method: :put do |f| %>
+                      <%= f.select :serving_count,
+                            serving_count_num(tm),
+                            {selected: tm.serving_count},
+                            { "data-id": tm.id, "data-cuisine-id": tm.cuisine_id, "data-user-id": current_user.id}
+                      %>
+                    <% end %>
                   </td>
                   <td>
                     <div class="text-center">

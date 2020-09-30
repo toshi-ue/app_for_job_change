@@ -4,15 +4,13 @@ $(function () {
   const htmlHeight = $("#index-todaysmenus").outerHeight()
   $("#no-todaysmenus").outerHeight(htmlHeight - nabvarHeight - footerHeight)
 
-  // console.log($('[name="todaysmenu[serving_count]"'))
-
   const csrfToken = document.querySelector('[name="csrf-token"]').getAttribute('content');
   $('[name="todaysmenu[serving_count]"').change(function () {
-    console.log($('[name="todaysmenu[serving_count]"').val())
     let changedServingCount = parseInt($('[name="todaysmenu[serving_count]"').val())
-    let updateID = parseInt($(this).attr("class").substr(7))
-    console.log($(this).attr("class"))
-    console.log(updateID)
+    let cuisineID = parseInt($(this).data('cuisine-id'))
+    let updateID = parseInt($(this).data('id'))
+    let userID = parseInt($(this).data('user-id'))
+
     $.ajax({
       url: "/todaysmenus/" + updateID,
       type: "put",
@@ -22,8 +20,10 @@ $(function () {
       },
       data: {
         todaysmenu: {
-          serving_count: changedServingCount
-        }
+          serving_count: changedServingCount,
+          cuisine_id: cuisineID,
+          user_id: userID
+        },
       },
       dataType: "json"
     }).done(function (data) {
