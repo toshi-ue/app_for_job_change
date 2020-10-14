@@ -115,6 +115,10 @@ GEM
     discard (1.2.0)
       activerecord (>= 4.2, < 7)
     docile (1.3.2)
+    dotenv (2.7.6)
+    dotenv-rails (2.7.6)
+      dotenv (= 2.7.6)
+      railties (>= 3.2)
     e2mmap (0.1.0)
     enum_help (0.0.17)
       activesupport (>= 3.0.0)
@@ -344,6 +348,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    stripe (5.26.0)
     thor (1.0.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
@@ -399,6 +404,7 @@ DEPENDENCIES
   devise-i18n
   devise-i18n-views
   discard
+  dotenv-rails
   enum_help
   factory_bot_rails
   faker
@@ -434,6 +440,7 @@ DEPENDENCIES
   spring
   spring-commands-rspec
   spring-watcher-listen (~> 2.0.0)
+  stripe
   tzinfo-data
   uglifier (>= 1.3.0)
   vcr
