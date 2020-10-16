@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201006081547) do
+ActiveRecord::Schema.define(version: 20201016024749) do
 
   create_table "cookedstates", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name", comment: "加工された状態の名前"
@@ -236,6 +236,10 @@ ActiveRecord::Schema.define(version: 20201006081547) do
     t.string "nickname"
     t.string "email", default: "", null: false
     t.integer "default_serving_count", default: 1
+    t.string "stripe_customer_id"
+    t.string "stripe_card_id"
+    t.boolean "subscribed"
+    t.datetime "subscribed_at"
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
