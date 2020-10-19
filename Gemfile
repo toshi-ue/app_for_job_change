@@ -27,7 +27,6 @@ gem 'ranked-model'
 gem 'ransack'
 gem 'sassc-rails'
 gem 'seed-fu'
-gem 'stripe'
 gem 'uglifier', '>= 1.3.0'
 gem 'webpacker'
 
