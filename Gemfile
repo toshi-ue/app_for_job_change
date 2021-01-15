@@ -7,7 +7,6 @@ end
 
 gem 'acts-as-taggable-on'
 gem 'bootstrap4-kaminari-views'
-gem 'bundle_outdated_formatter'
 gem 'carrierwave'
 gem 'counter_culture'
 gem 'devise'
