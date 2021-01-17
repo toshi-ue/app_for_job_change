@@ -48,7 +48,7 @@ group :development do
   gem 'bullet'
   gem 'foreman'
   gem 'letter_opener_web'
-  gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'listen'
   gem 'rubocop', require: false
   gem 'rubocop-performance'
   gem 'rubocop-rails', require: false
@@ -56,8 +56,8 @@ group :development do
   gem 'solargraph'
   gem 'spring'
   gem 'spring-commands-rspec'
-  gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'web-console', '>= 3.3.0'
+  gem 'spring-watcher-listen'
+  gem 'web-console'
 end
 
 group :test do
@@ -74,8 +74,7 @@ group :test do
   gem 'webmock'
 end
 
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
+gem 'tzinfo-data'
 # gem 'therubyracer', platforms: :ruby
 # gem 'capistrano-rails', group: :development
 # gem 'bcrypt', '~> 3.1.7'
