@@ -180,16 +180,14 @@ GEM
     mimemagic (0.3.5)
     mini_magick (4.11.0)
     mini_mime (1.0.2)
-    mini_portile2 (2.5.0)
     minitest (5.14.3)
     mysql2 (0.5.3)
     nio4r (2.5.4)
-    nokogiri (1.11.1)
-      mini_portile2 (~> 2.5.0)
+    nokogiri (1.11.1-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
     parallel (1.20.1)
-    parser (2.7.2.0)
+    parser (3.0.0.0)
       ast (~> 2.4.1)
     polyamorous (2.3.0)
       activerecord (>= 5.0)
@@ -280,15 +278,15 @@ GEM
     rspec-support (3.10.1)
     rspec_junit_formatter (0.4.1)
       rspec-core (>= 2, < 4, != 2.12.0)
-    rubocop (1.7.0)
+    rubocop (1.8.1)
       parallel (~> 1.10)
-      parser (>= 2.7.1.5)
+      parser (>= 3.0.0.0)
       rainbow (>= 2.2.2, < 4.0)
       regexp_parser (>= 1.8, < 3.0)
       rexml
       rubocop-ast (>= 1.2.0, < 2.0)
       ruby-progressbar (~> 1.7)
-      unicode-display_width (>= 1.4.0, < 2.0)
+      unicode-display_width (>= 1.4.0, < 3.0)
     rubocop-ast (1.4.0)
       parser (>= 2.7.1.5)
     rubocop-performance (1.9.2)
@@ -325,7 +323,7 @@ GEM
       simplecov_json_formatter (~> 0.1)
     simplecov-html (0.12.3)
     simplecov_json_formatter (0.1.2)
-    solargraph (0.40.1)
+    solargraph (0.40.2)
       backport (~> 1.1)
       benchmark
       bundler (>= 1.17.2)
@@ -333,7 +331,7 @@ GEM
       jaro_winkler (~> 1.5)
       kramdown (~> 2.3)
       kramdown-parser-gfm (~> 1.1)
-      parser (~> 2.3)
+      parser (~> 3.0)
       reverse_markdown (>= 1.0.5, < 3)
       rubocop (>= 0.52)
       thor (~> 1.0)
@@ -361,7 +359,7 @@ GEM
       tzinfo (>= 1.0.0)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
-    unicode-display_width (1.7.0)
+    unicode-display_width (2.0.0)
     uniform_notifier (1.13.2)
     vcr (6.0.0)
     warden (1.2.9)
@@ -391,7 +389,7 @@ GEM
     yard (0.9.26)
 
 PLATFORMS
-  ruby
+  x86_64-linux
 
 DEPENDENCIES
   acts-as-taggable-on
@@ -454,4 +452,4 @@ DEPENDENCIES
   webpacker
 
 BUNDLED WITH
-   1.17.3
+   2.2.5
