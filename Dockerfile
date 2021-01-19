@@ -1,4 +1,4 @@
-ARG RUBY_VERSION=2.5.8
+ARG RUBY_VERSION=2.6.6
 
 FROM ruby:$RUBY_VERSION
 
@@ -34,8 +34,9 @@ RUN apt-get update && apt-get install -y curl apt-transport-https wget && \
   echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
   apt-get update && apt-get install -y yarn
 
-# ENV BUNDLER_VERSION 1.17.3
-# RUN  gem install bundler -v $BUNDLER_VERSION
+ENV BUNDLER_VERSION 1.17.3
+RUN  gem install bundler -v $BUNDLER_VERSION
+
 
 RUN mkdir $APP_DIR
 # ENV APP_DIR /webapp
