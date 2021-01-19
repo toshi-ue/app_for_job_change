@@ -1,9 +1,5 @@
 source 'https://rubygems.org'
 
-gem 'nokogiri'
-gem 'rack', '~> 2.0.1'
-gem 'rspec'
-
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
@@ -25,7 +21,7 @@ gem 'kaminari'
 gem 'mini_magick'
 gem 'mysql2', '>= 0.3.18', '< 0.6.0'
 gem 'puma', '~> 3.7'
-gem 'rails', '~> 5.1.7'
+gem 'rails', '5.2.0'
 gem 'rails-i18n'
 gem 'ranked-model'
 gem 'ransack'
