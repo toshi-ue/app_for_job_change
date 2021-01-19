@@ -20,6 +20,10 @@ class ProfileImageUploader < CarrierWave::Uploader::Base
     %w[jpg jpeg gif png]
   end
 
+  def default_url(*args)
+    'test.jpg'
+  end
+
   def filename
     "#{secure_token}.jpg" if original_filename.present?
   end

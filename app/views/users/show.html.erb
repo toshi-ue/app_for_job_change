@@ -19,7 +19,7 @@
               <% unless @user.profile_image.blank? %>
                 <div class="d-flex justify-content-center align-items-center">
                   <div class="user-profile-image">
-                    <%= image_tag @user.profile_image, id: 'user-avatar', size: '100x100' %>
+                    <%= image_tag @user.profile_image_url, id: 'user-avatar', size: '100x100' %>
                   </div>
                 </div>
               <% else %>
