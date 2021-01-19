@@ -16,7 +16,7 @@
           <hr>
           <%= form_with(model: @user, url: update_profile_path, local: true, method: :put) do |f| %>
             <div class="form-group">
-              <% unless @user.profile_image.blank? %>
+              <% unless @user.profile_image_url.blank? %>
                 <div class="d-flex justify-content-center align-items-center">
                   <div class="user-profile-image">
                     <%= image_tag @user.profile_image_url, id: 'user-avatar', size: '100x100' %>
