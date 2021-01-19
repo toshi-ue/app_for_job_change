@@ -6,6 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'acts-as-taggable-on'
+gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap4-kaminari-views'
 gem 'carrierwave'
 gem 'counter_culture'
@@ -19,8 +20,9 @@ gem 'font-awesome-sass'
 gem 'jbuilder', '~> 2.5'
 gem 'kaminari'
 gem 'mini_magick'
+gem 'mini_racer', platforms: :ruby
 gem 'mysql2', '>= 0.3.18', '< 0.6.0'
-gem 'puma', '~> 3.7'
+gem 'puma', '~> 3.11'
 gem 'rails', '~> 5.2'
 gem 'rails-i18n'
 gem 'ranked-model'
